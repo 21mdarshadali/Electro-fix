@@ -433,53 +433,97 @@
       });
     } */
 
-    function setupContactForm() {
-      const form = document.getElementById("contact-form");
-      if (!form) return;
+    // function setupContactForm() {
+    //   const form = document.getElementById("contact-form");
+    //   if (!form) return;
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+    //   form.addEventListener("submit", function (e) {
+    //     e.preventDefault();
 
-        const submitBtn = document.getElementById("submit-btn");
-        const submitText = document.getElementById("submit-text");
-        const submitLoading = document.getElementById("submit-loading");
-        const formMessage = document.getElementById("form-message");
+    //     const submitBtn = document.getElementById("submit-btn");
+    //     const submitText = document.getElementById("submit-text");
+    //     const submitLoading = document.getElementById("submit-loading");
+    //     const formMessage = document.getElementById("form-message");
 
-        submitBtn.disabled = true;
-        submitText.classList.add("hidden");
-        submitLoading.classList.remove("hidden");
-        formMessage.classList.add("hidden");
+    //     submitBtn.disabled = true;
+    //     submitText.classList.add("hidden");
+    //     submitLoading.classList.remove("hidden");
+    //     formMessage.classList.add("hidden");
 
-        const templateParams = {
-          name: document.getElementById("name").value,
-          email: document.getElementById("email").value,
-          phone: document.getElementById("phone").value,
-          service: document.getElementById("service_type").value,
-          message: document.getElementById("message").value
-        };
+    //     const templateParams = {
+    //       name: document.getElementById("name").value,
+    //       email: document.getElementById("email").value,
+    //       phone: document.getElementById("phone").value,
+    //       service: document.getElementById("service_type").value,
+    //       message: document.getElementById("message").value
+    //     };
 
-        emailjs.send(
-          "service_jmocyl9",
-          "template_2vscb4e",
-          templateParams
-        ).then(
-          function () {
-            formMessage.textContent = "✅ Message sent successfully! Admin will contact you soon.";
-            formMessage.classList.remove("hidden");
-            form.reset();
-          },
-          function (error) {
-            formMessage.textContent = "❌ Failed to send message. Please try again.";
-            formMessage.classList.remove("hidden");
-            console.error("EmailJS Error:", error);
-          }
-        ).finally(() => {
-          submitBtn.disabled = false;
-          submitText.classList.remove("hidden");
-          submitLoading.classList.add("hidden");
-        });
-      });
-    }
+    //     emailjs.send(
+    //       "service_jmocyl9",
+    //       // "template_kjvwb3",
+    //       templateParams
+    //     ).then(
+    //       function () {
+    //         formMessage.textContent = "✅ Message sent successfully! Admin will contact you soon.";
+    //         formMessage.classList.remove("hidden");
+    //         form.reset();
+    //       },
+    //       function (error) {
+    //         formMessage.textContent = "❌ Failed to send message. Please try again.";
+    //         formMessage.classList.remove("hidden");
+    //         console.error("EmailJS Error:", error);
+    //       }
+    //     ).finally(() => {
+    //       submitBtn.disabled = false;
+    //       submitText.classList.remove("hidden");
+    //       submitLoading.classList.add("hidden");
+    //     });
+    //   });
+    // }
+
+function setupContactForm() {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service_type").value;
+    const message = document.getElementById("message").value.trim();
+
+    const ownerWhatsApp = "918188856669"; // Owner WhatsApp number
+
+    const whatsappMessage = `
+🔧 *New Service Inquiry – ElectroFix Pro*
+
+👤 *Customer Name:* ${name}
+📞 *Phone:* ${phone}
+📧 *Email:* ${email}
+🛠️ *Service Required:* ${service}
+
+📝 *Problem Details:*
+${message}
+
+📍 *Location:* Lucknow
+
+⏰ *Submitted From Website*
+    `;
+
+    const whatsappURL =
+      "https://wa.me/" +
+      ownerWhatsApp +
+      "?text=" +
+      encodeURIComponent(whatsappMessage);
+
+    window.open(whatsappURL, "_blank");
+
+    form.reset();
+  });
+}
+
 
 
     function updateTextContent() {
