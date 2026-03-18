@@ -506,7 +506,7 @@ function setupContactForm() {
 
 const whatsappMessage =
   "NEW SPARE PARTS INQUIRY\n" +
-  "KGN REFRIGERATION\n" +
+  "ElectroFix Pro\n" +
   "-------------------------\n\n" +
   "Customer Name : " + name + "\n" +
   "Phone Number  : " + phone + "\n" +
