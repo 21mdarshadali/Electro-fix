@@ -502,7 +502,7 @@ function setupContactForm() {
     const service = document.getElementById("service_type").value;
     const message = document.getElementById("message").value.trim();
 
-    const ownerWhatsApp = "917309741789"; // Owner WhatsApp number
+    const ownerWhatsApp = "918188856669"; // Owner WhatsApp number
 
 const whatsappMessage =
   "NEW SPARE PARTS INQUIRY\n" +
